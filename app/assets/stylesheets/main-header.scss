@@ -24,7 +24,6 @@
 				float   : right;
 				position: relative;
 				width   : calc(100% - (134px + 16px));
-
 				&__search {
 					width           : 100%;
 					height          : 36px;
@@ -35,6 +34,9 @@
 					border          : 1px solid #ccc;
 					border-radius   : 4px;
 					transition      : all ease-in .3s;
+				}
+				&__search-submit {
+          display:none;
 				}
 				.search-icon {
 					position   : absolute;

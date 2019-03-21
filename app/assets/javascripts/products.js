@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
   $('.photo-sub__item--img:first').addClass('active');
   $('.photo-sub__item--img').mouseover(function() {
     $('.photo-sub__item--img').removeClass('active');

@@ -4,9 +4,9 @@
 @import 'users/session_new';
 @import 'users/registration_select';
 @import 'users/users';
+@import 'users/logout';
 @import "profiles/profiles";
 @import "payments/payments";
-@import "profiles/signout";
 @import './independence';
 @import './main-header';
 @import './main-footer';
@@ -20,11 +20,11 @@
 @import 'mypage/mypage';
 @import 'mypage/content';
 @import 'mypage/side';
-@import 'modules/_flash.scss';
-@import 'modules/breadcrumbs-hedaer-contener.scss';
+@import 'modules/_flash';
+@import 'modules/breadcrumbs-hedaer-contener';
 @import 'modules/global-banner';
-@import 'users/register-edit.scss';
-
+@import 'users/register-edit';
+@import 'search';
 
 * { box-sizing: border-box;
 }

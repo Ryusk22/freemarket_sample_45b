@@ -26,7 +26,7 @@ Devise.setup do |config|
 
   config.sign_out_via = :delete
 
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email', redirect_uri: "http://localhost:3000/users/auth/google_oauth2/callback"
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], scope: 'email', redirect_uri: "#{Rails.application.secrets.host}/users/auth/google_oauth2/callback"
 
   config.omniauth :facebook, ENV['FACEBOOK_CLIENT_ID'], ENV['FACEBOOK_CLIENT_SECRET'], scope: 'email', info_fields: 'email', callback_url: "http://localhost:3000/users/auth/facebook/callback"
 end

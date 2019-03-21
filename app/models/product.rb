@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   has_one  :trade
+  has_many :comments
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 

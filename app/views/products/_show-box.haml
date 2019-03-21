@@ -1,0 +1,17 @@
+.show-box
+  = link_to "#", class: "body-items-box__item-box--link" do
+    .show-box_image
+      .show-box_image--inner
+        = image_tag product.images[0].image_path_url, class: "item-box-photo__img"
+    .show-box_text
+      .show-box_text--inner
+        %h3.show-box_text--inner_info
+          #{product.name}
+        .show-box_text--inner_price-box
+          .show-box_text--inner_price-box_price
+            ¥ #{product.price.to_s(:delimited)}
+          .show-box_text--inner_price-box_like
+            .show-box_text--inner_price-box_like_hart
+              %img.show-box_text--inner_price-box_like_hart{:src => "https://img.icons8.com/ios-glyphs/30/000000/hearts.png"}
+            .show-box_text--inner_price-box_like_count １
+        .show-box_text--inner_price_tax-info (税込)

@@ -4,9 +4,11 @@
       .clearfix.global-header-up
         %a.global-header-up__link{:href => root_path}
           %img.mercari-logo{:src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?856433691", :alt => "mercari"}
-        %form.basic-form
-          %input.basic-form__search{type: "text", placeholder: "キーワードから探す"}
-          %i.fas.fa-search.search-icon
+        .basic-form
+          = form_with url: search_products_path, method: :get, local: true do |form|
+            = form.text_field :keyword, placeholder: "キーワードから探す",class: 'basic-form__search'
+            = form.submit '', class: 'basic-form__search-submit', name: nil
+            %i.fas.fa-search.search-icon
       .clearfix.global-header-down
         .product-search
           %nav
@@ -26,7 +28,7 @@
           .user-menu
             %ul.user-menu__list
               %li
-                = link_to '#' do
+                = link_to user_path(current_user.id) do
                   %figure.user-menu__list--figure
                     %div
                       = image_tag 'member_photo_noimage_thumb.png'

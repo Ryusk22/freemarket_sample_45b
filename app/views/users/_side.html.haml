@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav__list
       %li
-        = link_to '',class: 'mypage-nav__list--item active' do
+        = link_to user_path(current_user.id),class: 'mypage-nav__list--item active' do
           マイページ
           %i.fas.fa-angle-right
       %li
@@ -70,7 +70,7 @@
   %h3.mypage-nav-head 設定
   %ul.mypage-nav__list
     %li
-      = link_to '',class: 'mypage-nav__list--item' do
+      = link_to edit_user_registration_path,class: 'mypage-nav__list--item' do
         プロフィール
         %i.fas.fa-angle-right
     %li
@@ -94,6 +94,6 @@
         電話番号の確認
         %i.fas.fa-angle-right
     %li
-      = link_to '',class: 'mypage-nav__list--item' do
+      = link_to logout_users_path,class: 'mypage-nav__list--item' do
         ログアウト
         %i.fas.fa-angle-right

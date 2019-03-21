@@ -1,0 +1,12 @@
+= render 'layouts/global-header'
+
+.l-container.clearfix
+  = render 'side'
+  .l-content
+    .l-chapter-container
+      .logout-container
+        .logout-container__form
+          = link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'logout-container__form--btn'
+
+= render 'layouts/global-banner'
+= render 'layouts/global-footer'

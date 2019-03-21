@@ -1,0 +1,12 @@
+= render 'layouts/global-header'
+= render 'layouts/flash'
+
+.serch-page
+  = render 'side-bar'
+  .search-right-section
+    .search-result-box
+      %h2.search-result-count 検索結果 #{@product.length} 件
+      .search-right-section_inner
+        = render partial: 'show-box', collection: @product, as: :product
+
+= render 'layouts/global-footer'

@@ -3,14 +3,15 @@
     = link_to '#' do
       %figure.mypage-user-icon__figure
         = image_tag 'member_photo_noimage_thumb.png'
-      %h2.mypage-user-icon__name メルコリ太郎
+      %h2.mypage-user-icon__name #{@user.nickname}
       .mypage-user-icon__number
         %div
           評価
           %span.bold 1
         %div
           出品数
-          %span.bold 0
+          %span.bold
+            #{Product.where(seller_id: current_user.id).count}
 
 
   %section.mypage-tab-container-notification-todo.clearfix

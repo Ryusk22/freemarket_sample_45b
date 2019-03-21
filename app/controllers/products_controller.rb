@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @user = User.find(@product.seller_id)
-
+    @comment = Comment.new
     @category = @product.category
     if @category.depth == 2
       @parent_category = @category.root.name
@@ -95,6 +95,10 @@ class ProductsController < ApplicationController
     customer_id = Payjp::Customer.retrieve(customer.customer_id)
     @customer = customer_id.cards.data[0]
     @product = Product.find(params[:id])
+  end
+
+  def search
+    @product = Product.where('name LIKE ?', "%#{params[:keyword]}%").limit(49)
   end
 
   private

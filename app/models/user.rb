@@ -18,7 +18,8 @@ class User < ApplicationRecord
   has_many :likes
   has_many :products, through: :likes
   has_many :trades
-  
+  has_many :comments
+
   def already_liked?(product)
     self.likes.exists?(product_id: product.id)
   end

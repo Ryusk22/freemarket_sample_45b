@@ -1,15 +1,17 @@
-.register-edit-container
-  %h2.edit-header プロフィール
-  = form_with(model: @user, url: user_registration_path, local: true) do |f|
-    .edit-header-image
-      .edit-header-image_inner
-        .edit-header-image_inner_avatar
-        .edit-header-image_inner_nickname
-          = f.text_field :nickname, class:"nickname-input", value: @user.nickname
-    .self-introduction-container
-      .self-introduction-container_inner
-        - if @user.self_introduction.nil?
-          = f.text_area :self_introduction, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", class:"self-introduction-container_inner_text"
-        - else
-          = f.text_area :self_introduction, class:"self-introduction-container_inner_text", value: @user.self_introduction
-          = f.submit :変更する, class:"edit-btn"
+= render 'layouts/global-header'
+
+.l-container.clearfix
+  = render 'users/side'
+  %section.l-chapter-container
+    %h2.l-chapter-container__head プロフィール
+    = form_for @user do |f|
+      .setting-profile-icon
+        %figure.setting-profile-icon__figure
+          = image_tag 'member_photo_noimage_thumb.png'
+        = f.text_field :nickname, placeholder: '例)AYA⭐︎セール中', class: 'setting-profile-icon__form'
+      .setting-profile-content
+        = f.text_area :self_introduction, placeholder: '例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪', class: 'setting-profile-content__form'
+        = f.submit '変更する', class: 'setting-profile-content__submit'
+
+= render 'layouts/global-banner'
+= render 'layouts/global-footer'

@@ -1,0 +1,116 @@
+.serch-page{
+  width: 1100px;
+  margin: auto;
+  height:100%;
+  display: flex;
+  padding-top: 20px;
+}
+
+// サイドバーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+.search-side-bar{
+  width: 291px;
+  &_inner{
+  margin-top: 30px;
+  width: 97%;
+  height: 733px;
+  background-image: image-url("side1.png");
+  }
+  &_inner2{
+  width: 100%;
+  height: 580px;
+  background-image: image-url("side2.png");
+  margin-bottom: 100px;
+  }
+}
+
+
+// 右側全体 ------------------------------------------------
+
+.search-right-section{
+  margin-top:28px;
+  width: 750px;
+  height: 100%;
+  padding: 1%;
+  &_inner{
+  display: flex;
+  flex-wrap: wrap;
+  }
+}
+
+.search-right-section_inner-box{
+  display: flex;
+  margin-bottom:10px;
+}
+
+
+// 検索結果件数 ーーーーーーーーーーーーーー
+.search-result-count{
+  margin-bottom: 13px;
+  font-size: 22px;
+}
+
+// 商品情報BOX -------------------------
+
+.show-box{
+  background-color: #FFFFFF;
+  width: 160px;
+  height: 270px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  &_image{
+    height: 160px;
+    width: 100%;
+    &--inner{
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .item-box-photo__img{
+        width: 100%;
+      }
+    }
+  }
+  &_text{
+    padding: 5% 10%;
+    &--inner{
+      &_info{
+        height:55px;
+      }
+      &_price-box{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height:30%;
+          width: 100%;
+          margin-bottom: 5%;
+        &_price{
+          height: 80%;
+          width: 100%;
+          font-size: 20px;
+          }
+        &_like{
+          display: flex;
+          align-items: center;
+          height:10%;
+          &_hart{
+            color: gray;
+            width: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          &_count{
+            font-size:5px;
+          }
+        }
+      }
+      &_price_tax-info{
+        height: 20%;
+        width: 100%;
+        font-size: 3px;
+      }
+    }
+  }
+}
+
+// --------------------------------
