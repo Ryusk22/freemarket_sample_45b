@@ -1,6 +1,7 @@
 .register__container
   .register__container__header
-    = image_tag "logo.svg", class:"campany-logo", alt:"メルカリロゴ"
+    = link_to root_path, class:"register_logo_link" do
+      = image_tag "logo.svg", class:"campany-logo", alt:"メルカリロゴ"
 
   %main.register-main
     %section.register-main__container

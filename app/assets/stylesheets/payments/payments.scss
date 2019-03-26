@@ -70,3 +70,19 @@
   -webkit-transform: translate(0, -50%);
   transform: translate(0, -50%);
 }
+
+.progress-right-red{
+  @include progress-right-red
+}
+
+.progress-wside-gray{
+   @include progress-wside-gray
+}
+
+.progress-wside-red{
+   @include progress-wside-red
+}
+
+.progress-left-gray{
+   @include progress-left-gray
+}

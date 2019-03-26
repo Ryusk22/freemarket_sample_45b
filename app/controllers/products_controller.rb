@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :edit, :buy]
   before_action :set_form_data, only: [:new, :edit]
+  before_action :check_seller?, only: :edit
+  before_action :check_user, only: :buy
   before_action :Set_api_for_payjp, only: :buy
 
   def index
@@ -39,8 +42,10 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       redirect_to root_path
+      flash[:success] = "出品が完了しました"
     else
-      redirect_to new_product_path, flash: {miss: "必須項目をすべて選択してください"}
+      redirect_to new_product_path
+      flash[:danger] = "必須項目をすべて選択してください"
     end
   end
 
@@ -57,12 +62,14 @@ class ProductsController < ApplicationController
     @category = @product.category
     @child_categories = Category.where('ancestry = ?', "#{@category.root_id}")
     @grandchild_categories = Category.where('ancestry LIKE ?', "%/#{@category.parent_id}")
+    @fee = (@product.price * 0.1).floor
   end
 
   def update
     product = Product.find(params[:id])
     product.update(update_product_params) if product.seller_id == current_user.id
     redirect_to product_path(params[:id])
+    flash[:success] = "商品情報の編集が完了しました"
   end
 
   def category
@@ -95,10 +102,11 @@ class ProductsController < ApplicationController
     customer_id = Payjp::Customer.retrieve(customer.customer_id)
     @customer = customer_id.cards.data[0]
     @product = Product.find(params[:id])
+    @profile = @product.user.profile
   end
 
   def search
-    @product = Product.where('name LIKE ?', "%#{params[:keyword]}%").limit(49)
+    @product = Product.where('name LIKE ?', "%#{params[:keyword]}%").limit(49).reverse_order
   end
 
   private
@@ -118,6 +126,19 @@ class ProductsController < ApplicationController
 
   def search_product(category)
     return Product.where(category_id: category.subtree_ids).limit(4).order("created_at DESC")
+  end
+
+  def check_seller?
+    product = Product.find(params[:id])
+    redirect_to product_path unless product.seller_id == current_user.id
+  end
+
+  def check_user
+    if Profile.where(user_id: current_user.id).blank?
+      redirect_to new_profile_path
+    elsif Payment.where(user_id: current_user.id).blank?
+      redirect_to new_payment_path
+    end
   end
 
 end

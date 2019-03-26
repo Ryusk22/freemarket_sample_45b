@@ -11,10 +11,6 @@
   @include progress-bar
 }
 
-.progress-status{
-  @include progress-status
-}
-
 .register-main{
   @include register-main
 }
@@ -33,4 +29,20 @@
 
 .register__container__footer{
   @include register__container__footer
+}
+
+.progress-right-red{
+  @include progress-right-red
+}
+
+.progress-wside-gray{
+   @include progress-wside-gray
+}
+
+.progress-wside-red{
+   @include progress-wside-red
+}
+
+.progress-left-gray{
+   @include progress-left-gray
 }

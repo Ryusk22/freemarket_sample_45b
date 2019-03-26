@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
+  before_action :profile_check, only: :new
 
   def new
     @profiles = Profile.new
@@ -18,6 +19,10 @@ class ProfilesController < ApplicationController
   private
   def profile_params
     params.require(:profile).permit(:first_name, :last_name, :first_name_kana, :last_name_kana, :birthdate, :zip_code, :prefecture, :city, :address1, :address2, :phone_number, ).merge(user_id: current_user.id)
+  end
+
+  def profile_check
+    redirect_to root_path unless Profile.where(user_id: current_user.id).blank?
   end
 
 end

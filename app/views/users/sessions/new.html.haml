@@ -1,6 +1,7 @@
 .register__container
   .register__container__header
-    = image_tag "logo.svg", class:"campany-logo", alt:"メルカリロゴ"
+    = link_to root_path, class:"register_logo_link" do
+      = image_tag "logo.svg", class:"campany-logo", alt:"メルカリロゴ"
 
   %main.register-select-main
     %section.register-main__container
@@ -23,7 +24,7 @@
             %a.google-btn{:href => 'auth/google_oauth2/'}
               Googleでログイン
 
-          = form_with(model: resource, as: resource_name, url: user_session_path, locla: true) do |form|
+          = form_with(model: resource, as: resource_name, url: user_session_path, local: true) do |form|
             .register-inner__content
               .form-group
                 = form.email_field :email, placeholder: "メールアドレス", class:"input-default"

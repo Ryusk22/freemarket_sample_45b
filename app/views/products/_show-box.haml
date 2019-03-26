@@ -1,5 +1,5 @@
 .show-box
-  = link_to "#", class: "body-items-box__item-box--link" do
+  = link_to product_path(product.id), class: "body-items-box__item-box--link" do
     .show-box_image
       .show-box_image--inner
         = image_tag product.images[0].image_path_url, class: "item-box-photo__img"

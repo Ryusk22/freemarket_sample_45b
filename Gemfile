@@ -79,3 +79,4 @@ gem 'recaptcha', require: "recaptcha/rails"
 gem 'fog-aws'
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'gretel'
+gem 'factory_girl_rails', :require => false

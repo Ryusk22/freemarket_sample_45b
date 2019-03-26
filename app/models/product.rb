@@ -8,11 +8,12 @@ class Product < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :users, through: :likes
   has_one  :trade
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :images, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :name, presence: true
+  validates :name,    length: { maximum: 40 }
   validates :detail, presence: true
   validates :detail,    length: { maximum: 1000 }
   validates :category_id, presence: true
@@ -22,6 +23,10 @@ class Product < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :date, presence: true
   validates :price, presence: true
+  validates :price, numericality: { only_integer: true }
+  validates :price, numericality: { greater_than_or_equal_to: 300 }  # 数字が5以上であるか
+  validates :price, numericality: { less_than_or_equal_to: 9999999 }
+  validates :images, presence: true
 
   enum condition: {
     unused: 1,

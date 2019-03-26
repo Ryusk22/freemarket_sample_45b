@@ -1,5 +1,4 @@
 crumb :root do
-  # binding.pry
   link 'メルカリ', root_path
 end
 

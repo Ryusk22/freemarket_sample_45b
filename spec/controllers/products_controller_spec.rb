@@ -25,7 +25,6 @@ describe ProductsController, type: :controller do
     context "with valid params" do
       it "creates a new Product" do
         params = { images_attributes: [ attributes_for( :image ) ] }
-        binding.pry
         expect {
           post :create,
           product: build( :product ).merge( params )

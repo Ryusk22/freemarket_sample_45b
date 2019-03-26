@@ -1,5 +1,5 @@
 %div.like-link{id: "like-link-#{product.id}"}
-  - if current_user.already_liked?(product)
+  - if user_signed_in? && current_user.already_liked?(product)
     =link_to unlike_path(product.id), method: :delete, remote: true, class: "item-box__btn-container-left--liked item-button__liked", id: "heart-#{product.id} l" do
       %i.fas.fa-heart
       %span いいね!

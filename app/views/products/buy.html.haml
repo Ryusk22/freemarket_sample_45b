@@ -8,33 +8,34 @@
       %section.buy-content.buy-item
         .buy-content-inner
           %h3.buy-item-image
-            = image_tag "https://placehold.jp/150x150.png"
+            = image_tag "#{@product.images[0].image_path_url}"
           %p.buy-item-name.bold
-            テスト商品
+            #{@product.name}
           = form_for @product, url: {controller: "trades", action: "update"} do |f|
             = f.hidden_field :price, value: @product.price
             %p.buy-price-ja.bold
-              ¥ 680
+              ¥ #{@product.price.to_s(:delimited)}
               %span.item-shipping-fee.f14.bold
-                送料込み
+                = fee_decide(@product)
             %ul.buy-accordion.not-have
               %li.accrodion-parent
                 .accrodion-toggle ポイントはありません
             %ul.buy-price-table
               %li.buy-price-row.buy-you-pay.bold
               %li.buy-price-cell 支払い金額
-              %li.buy-price-cell ¥ 680
+              %li.buy-price-cell ¥ #{@product.price.to_s(:delimited)}
             = f.submit "購入する", class: "btn-buy bold"
 
       %section.buy-content.buy-user-info
         .buy-content-inner
           %h3 配送先
           %address.buy-user-info-text
-            〒633-0376
+            〒
+            = zip_code(@profile)
             %br
-            東京都 相楽郡精華町桜ヶ丘 4-37-9
+            = set_address(@profile)
             %br
-            メルコリ 太郎
+            = set_name(@profile)
           = link_to "#", class: "buy-user-info-fix" do
             %span 変更する
             %i.fas.fa-angle-right.arrow-right

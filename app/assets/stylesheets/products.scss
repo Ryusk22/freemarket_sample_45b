@@ -23,6 +23,7 @@
       float : left;
       width : 300px;
       height: 375px;
+      position: relative;
       .photo-main {
         width   : 300px;
         height  : 300px;
@@ -341,4 +342,27 @@
     display: block;
     font-size: 14px;
   }
+}
+
+/* ラベル部分 左上に表示 */
+.sold::before {
+    content: "";
+    top: 0;
+    left: 0;
+    border-bottom: 120px solid transparent;
+    border-left: 120px solid #ea352d; /* ラベルの色はここで変更 */
+    position: absolute;
+    z-index: 100;
+}
+.sold::after {
+    content: "SOLD";
+    display: block;
+    top: 25px;
+    transform: rotate(-45deg);
+    color: #fff; /* 文字色はここで変更 */
+    left: 5px;
+    font-size: 28px;
+    font-weight: 600;
+    position: absolute;
+    z-index: 101;
 }

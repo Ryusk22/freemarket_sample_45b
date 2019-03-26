@@ -1,11 +1,24 @@
-%section.body-items-box__item-box
-  = link_to product_path(product.id), class: "body-items-box__item-box--link" do
-    %figure.item-box-photo
-      = image_tag product.images[0].image_path_url, class: "item-box-photo__img"
-    .item-box-body
-      %h3.item-box-body__name
-        #{product.name}
-      .item-box-body__num
-        .item-box-body__num--price
-          ¥ #{product.price.to_s(:delimited)}
-        %p.item-box-body__num--tax (税込)
+- if product.status == 0
+  %section.body-items-box__item-box
+    = link_to product_path(product.id), class: "body-items-box__item-box--link" do
+      %figure.item-box-photo
+        = image_tag product.images[0].image_path_url, class: "item-box-photo__img"
+      .item-box-body
+        %h3.item-box-body__name
+          #{product.name}
+        .item-box-body__num
+          .item-box-body__num--price
+            ¥ #{product.price.to_s(:delimited)}
+          %p.item-box-body__num--tax (税込)
+- else
+  %section.body-items-box__item-box.sold
+    = link_to product_path(product.id), class: "body-items-box__item-box--link" do
+      %figure.item-box-photo
+        = image_tag product.images[0].image_path_url, class: "item-box-photo__img"
+      .item-box-body
+        %h3.item-box-body__name
+          #{product.name}
+        .item-box-body__num
+          .item-box-body__num--price
+            ¥ #{product.price.to_s(:delimited)}
+          %p.item-box-body__num--tax (税込)

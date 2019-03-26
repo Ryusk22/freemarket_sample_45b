@@ -8,12 +8,19 @@ $(document).ready(function(){
             <img alt="アイコン" id="item-img" src="https://placehold.jp/150x150.png" />
           </figure>
           <div class='sell-upload-btn'>
-            <a class="sell-upload__edit" href="#">編集</a>
-            <a class="sell-upload__delete" href="#">削除</a>
+            <a class="sell-upload__edit" href="">編集</a>
+            <a class="sell-upload__delete" id="delete-btn" href="">削除</a>
           </div>
         </li>`
     listsearch.append(html);
   }
+
+  $(document).on('click', '#delete-btn', function(){
+    $('#inputFileType').reset();
+    $('.sell-upload__item').remove();
+    $('.sell-upload__dropbox').removeClass('have-item-1');
+    $('.sell-upload__dropbox').addClass('have-item-0');
+  });
 
   $('#file-upload').on('change', function(e){
     //ファイルオブジェクトを取得する
@@ -29,6 +36,7 @@ $(document).ready(function(){
     //アップロードした画像を設定する
     reader.onload = (function(file){
       return function(e){
+        $('.sell-upload__item').remove();
         $('.sell-upload__dropbox').removeClass('have-item-0');
         $('.sell-upload__dropbox').addClass('have-item-1');
         appendItemSelect()
@@ -173,22 +181,20 @@ $(document).ready(function(){
     })
   });
 
-// FIXME: 入力値の計算処理後、正しくビューに表示されないため、修正する
-  // $('#calc-price').keyup(function(e){
-  //   e.preventDefault();
-  //   var price = $(this).val();
-  //   var count = $(this).val().length;
-  //   if (count >= 3) {
-  //   console.log(price);
-  //   var fee = price * 0.1;
-  //   console.log(fee);
-  //   var revenue = (price - fee);
-  //   console.log(revenue);
-  //   var aa = $('#fee').text().replace(/-/g, fee);
-  //   $('#fee').text(aa);
-  //   var bb = $('#revenue').text().replace(/-/g, revenue);
-  //   $('#revenue').text(bb);
-  //   }
-  // });
+  $('#calc-price').keyup(function(e){
+    e.preventDefault();
+    var price = $(this).val();
+    var count = $(this).val().length;
+    if (count < 3 || price > 9999999) {
+      $('#fee').text("-");
+      $('#revenue').text("-");
+    } else if (count >= 3 && price >= 300) {
+      var calc_fee = price * 0.1;
+      var fee = Math.floor(calc_fee);
+      var revenue = (price - fee);
+      $('#fee').text(fee.toLocaleString());
+      $('#revenue').text(revenue.toLocaleString());
+    }
+  });
 
 });
